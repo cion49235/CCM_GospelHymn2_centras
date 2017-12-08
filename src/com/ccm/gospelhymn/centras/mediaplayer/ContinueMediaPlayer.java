@@ -22,6 +22,18 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import com.admixer.AdAdapter;
+import com.admixer.AdInfo;
+import com.admixer.AdMixerManager;
+import com.admixer.AdView;
+import com.admixer.AdViewListener;
+import com.admixer.InterstitialAdListener;
+import com.ccm.gospelhymn.centras.R;
+import com.ccm.gospelhymn.centras.activity.SubActivity;
+import com.ccm.gospelhymn.centras.util.ImageLoader;
+import com.ccm.gospelhymn.centras.util.TimeUtil;
+import com.squareup.picasso.Picasso;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -50,18 +62,6 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.admixer.AdAdapter;
-import com.admixer.AdInfo;
-import com.admixer.AdMixerManager;
-import com.admixer.AdView;
-import com.admixer.AdViewListener;
-import com.admixer.InterstitialAdListener;
-import com.ccm.gospelhymn.centras.R;
-import com.ccm.gospelhymn.centras.activity.SubActivity;
-import com.ccm.gospelhymn.centras.util.ImageLoader;
-import com.ccm.gospelhymn.centras.util.TimeUtil;
-import com.squareup.picasso.Picasso;
 
 public class ContinueMediaPlayer extends Activity implements OnClickListener, OnBufferingUpdateListener, OnCompletionListener, OnPreparedListener,android.widget.SeekBar.OnSeekBarChangeListener, OnErrorListener, AdViewListener, InterstitialAdListener{
 	public static LinearLayout layout_progress;
@@ -1143,25 +1143,22 @@ public class ContinueMediaPlayer extends Activity implements OnClickListener, On
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if(event.getKeyCode() == KeyEvent.KEYCODE_BACK){
-//			if(ContinueMediaPlayer.mediaPlayer.isPlaying()){
-//				Intent intent = new Intent();
-//				intent.setAction(Intent.ACTION_MAIN);
-//				intent.addCategory(Intent.CATEGORY_HOME);
-//				startActivity(intent);
-//				Toast.makeText(context, context.getString(R.string.txt_custom_videoplayer4), Toast.LENGTH_LONG).show();
-//			}else{
-				 handler.postDelayed(new Runnable() {
-					 @Override
-					 public void run() {
-						 if(ContinueMediaPlayer.mediaPlayer.isPlaying()){
-							 ContinueMediaPlayer.mediaPlayer.stop();
-						 }
-						 onDestroy();
-						 SubActivity.setNotification_Cancel();
+			if(mediaPlayer.isPlaying() == true){
+				mediaPlayer.pause();
+			}
+			Toast.makeText(context, context.getString(R.string.txt_custom_videoplayer3), Toast.LENGTH_SHORT).show();
+			addInterstitialView();
+			 handler.postDelayed(new Runnable() {
+				 @Override
+				 public void run() {
+					 if(mediaPlayer.isPlaying() == true){
+						 mediaPlayer.pause();
 					 }
-				 },0);
-				return false;
-//			}
+					 onDestroy();
+					 SubActivity.setNotification_Cancel();
+				 }
+			 },1500);
+			 return false;
 		}
 		return super.onKeyDown(keyCode, event);
 	}

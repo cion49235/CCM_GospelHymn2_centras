@@ -6,8 +6,8 @@
 	<classpathentry kind="lib" path="libs/CaulySDK-3.3.30.jar"/>
 	<classpathentry kind="lib" path="libs/google-play-services.jar"/>
 	<classpathentry kind="lib" path="libs/TadSDK_3.10.1.jar"/>
-	<classpathentry kind="lib" path="libs/AdMixer_1.3.17.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="lib" path="libs/AdMixer_1.4.4.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

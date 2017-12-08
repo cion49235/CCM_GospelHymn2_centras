@@ -1,6 +1,9 @@
 <resources>
 
     <string name="app_name">"CCM Music"</string>
+    <string name="txt_finish_yes">"Finish"</string>
+    <string name="txt_finish_no">"Cancel"</string>
+    <string name="txt_finish_ment">"Are you sure you want to quit?"</string>
 	<string name="txt_nodata">There is no data</string>
 	<string name="txt_favorite_nodata">There is no favorite data</string>
     <string name="txt_main_activity1">"'Favorites' item has been added"</string>

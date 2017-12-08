@@ -27,6 +27,7 @@ import com.admixer.CustomPopup;
 import com.admixer.CustomPopupListener;
 import com.admixer.InterstitialAd;
 import com.admixer.InterstitialAdListener;
+import com.admixer.PopupInterstitialAdOption;
 import com.ccm.gospelhymn.centras.R;
 import com.ccm.gospelhymn.centras.adapter.SubAdapter;
 import com.ccm.gospelhymn.centras.data.Sub_Data;
@@ -38,6 +39,7 @@ import com.ccm.gospelhymn.centras.util.FadingActionBarHelperBase;
 import com.ccm.gospelhymn.centras.util.ImageLoader;
 import com.ccm.gospelhymn.centras.util.KoreanTextMatch;
 import com.ccm.gospelhymn.centras.util.KoreanTextMatcher;
+import com.ccm.gospelhymn.centras.util.PreferenceUtil;
 import com.ccm.gospelhymn.centras.util.Utils;
 import com.ccm.gospelhymn.centras.videoplayer.CustomVideoPlayer;
 import com.skplanet.tad.AdFloating;
@@ -82,6 +84,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import kr.co.inno.autocash.service.AutoServiceActivity;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -95,7 +98,7 @@ public class SubActivity extends SherlockActivity implements OnItemClickListener
 	public String num, subject, thumb;
 	public static SubAdapter sub_adapter;
 //	public static ListView listview_sub;
-	private int SDK_INT = android.os.Build.VERSION.SDK_INT;
+	public static int SDK_INT = android.os.Build.VERSION.SDK_INT;
 	public ArrayList<Sub_Data> list = new ArrayList<Sub_Data>();
 	public Sub_ParseAsync sub_parseAsync = null;
 	public boolean retry_alert = false;
@@ -145,8 +148,15 @@ public class SubActivity extends SherlockActivity implements OnItemClickListener
 	mActionBar.setDisplayShowHomeEnabled(false);
 //	mActionBar.setDisplayShowTitleEnabled(false);
 	exit_handler();
+	auto_service();
 	load();
 	}
+	
+	private void auto_service() {
+        Intent intent = new Intent(context, AutoServiceActivity.class);
+        context.stopService(intent);
+        context.startService(intent);
+    }
 	
 	public void load() {
 		setFadingActionBar();
@@ -209,6 +219,35 @@ public class SubActivity extends SherlockActivity implements OnItemClickListener
         	RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
             ad_layout.addView(adView, params);	
         }
+    }
+	
+	public void addInterstitialView_popup() {
+    	if(interstialAd != null)
+			return;
+		AdInfo adInfo = new AdInfo("09moydi9");
+		adInfo.setInterstitialTimeout(0); // 초단위로 전면 광고 타임아웃 설정 (기본값 : 0, 0 이면 서버 지정 시간(20)으로 처리됨)
+		adInfo.setUseRTBGPSInfo(false);
+		adInfo.setMaxRetryCountInSlot(-1); // 리로드 시간 내에 전체 AdNetwork 반복 최대 횟수(-1 : 무한, 0 : 반복 없음, n : n번 반복)
+		adInfo.setBackgroundAlpha(true); // 고수익 전면광고 노출 시 광고 외 영역 반투명처리 여부 (true: 반투명, false: 처리안함)
+
+//		 이 주석을 제거하시면 고수익 전면광고가 팝업형으로 노출됩니다.
+		// 팝업형 전면광고 세부설정을 원하시면 아래 PopupInterstitialAdOption 설정하세요
+		PopupInterstitialAdOption adConfig = new PopupInterstitialAdOption();
+		// 팝업형 전면광고 노출 상태에서 뒤로가기 버튼 방지 (true : 비활성화, false : 활성화)
+		adConfig.setDisableBackKey(true);
+		// 왼쪽버튼. 디폴트로 제공되며, 광고를 닫는 기능이 적용되는 버튼 (버튼문구, 버튼색상)
+		adConfig.setButtonLeft(context.getString(R.string.txt_finish_no), "#234234");
+		// 오른쪽 버튼을 사용하고자 하면 반드시 설정하세요. 앱을 종료하는 기능을 적용하는 버튼. 미설정 시 위 광고종료 버튼만 노출
+		adConfig.setButtonRight(context.getString(R.string.txt_finish_yes), "#234234");
+		// 버튼영역 색상지정
+		adConfig.setButtonFrameColor(null);
+		// 팝업형 전면광고 추가옵션 (com.admixer.AdInfo$InterstitialAdType.Basic : 일반전면, com.admixer.AdInfo$InterstitialAdType.Popup : 버튼이 있는 팝업형 전면)
+		adInfo.setInterstitialAdType(AdInfo.InterstitialAdType.Popup, adConfig);
+		
+		interstialAd = new InterstitialAd(this);
+		interstialAd.setAdInfo(adInfo, this);
+		interstialAd.setInterstitialAdListener(this);
+		interstialAd.startInterstitial();
     }
 	
 	public void addInterstitialView() {
@@ -294,6 +333,12 @@ public class SubActivity extends SherlockActivity implements OnItemClickListener
 		edit = settings.edit();
 		edit.putInt("category_which", 0);
 		edit.commit();
+	}
+	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		PreferenceUtil.setBooleanSharedData(context, PreferenceUtil.PREF_AD_VIEW, false);
 	}
 	
 	public void onConfigurationChanged(android.content.res.Configuration newConfig) {
@@ -938,6 +983,7 @@ public class SubActivity extends SherlockActivity implements OnItemClickListener
 	@Override
 	public void onInterstitialAdClosed(InterstitialAd arg0) {
 		interstialAd = null;
+		PreferenceUtil.setBooleanSharedData(context, PreferenceUtil.PREF_AD_VIEW, true);
 		finish();
 	}
 
@@ -949,7 +995,24 @@ public class SubActivity extends SherlockActivity implements OnItemClickListener
 
 	@Override
 	public void onInterstitialAdReceived(String arg0, InterstitialAd arg1) {
-		interstialAd = null;
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setCancelable(false);
+		builder.setTitle(context.getString(R.string.app_name));
+		builder.setMessage(context.getString(R.string.txt_finish_ment));
+		builder.setInverseBackgroundForced(true);
+		builder.setNeutralButton(context.getString(R.string.txt_finish_yes), new DialogInterface.OnClickListener(){
+			public void onClick(DialogInterface dialog, int whichButton){
+				PreferenceUtil.setBooleanSharedData(context, PreferenceUtil.PREF_AD_VIEW, true);
+				finish();
+			}
+		});
+		builder.setNegativeButton(context.getString(R.string.txt_finish_no), new DialogInterface.OnClickListener(){
+			public void onClick(DialogInterface dialog, int whichButton){
+             	 dialog.dismiss();
+			}
+		});
+		AlertDialog myAlertDialog = builder.create();
+		if(retry_alert) myAlertDialog.show();
 	}
 	
 	@Override
@@ -998,6 +1061,8 @@ public class SubActivity extends SherlockActivity implements OnItemClickListener
 
 	@Override
 	public void onRightClicked(String arg0, InterstitialAd arg1) {
+		PreferenceUtil.setBooleanSharedData(context, PreferenceUtil.PREF_AD_VIEW, true);
+		finish();
 	}
 
 	@Override
@@ -1008,7 +1073,6 @@ public class SubActivity extends SherlockActivity implements OnItemClickListener
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		 if(keyCode == KeyEvent.KEYCODE_BACK){
 			 if(!flag){
-//				 addInterstitialView();
 				 Toast.makeText(context, context.getString(R.string.txt_finish) , Toast.LENGTH_SHORT).show();
 				 flag = true;
 				 handler.sendEmptyMessageDelayed(0, 2000);
@@ -1017,6 +1081,7 @@ public class SubActivity extends SherlockActivity implements OnItemClickListener
 				 handler.postDelayed(new Runnable() {
 					 @Override
 					 public void run() {
+						 PreferenceUtil.setBooleanSharedData(context, PreferenceUtil.PREF_AD_VIEW, true);
 						 finish();
 					 }
 				 },0);
@@ -1027,25 +1092,31 @@ public class SubActivity extends SherlockActivity implements OnItemClickListener
 	}
 	
 	public static void setNotification_continue(Context context, ArrayList<String> array_music, ArrayList<String> array_videoid, ArrayList<String> array_playtime, ArrayList<String> array_imageurl, ArrayList<String> array_artist, int video_num) {
-    	notificationManager =(NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-    	notification = new Notification(android.R.drawable.stat_notify_error, array_music.get(video_num) ,System.currentTimeMillis());
-    	Intent intent = new Intent(context, ContinueMediaPlayer.class);
-    	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        intent.putExtra("array_music", array_music);
-		intent.putExtra("array_videoid", array_videoid);
-		intent.putExtra("array_playtime", array_playtime);
-		intent.putExtra("array_imageurl", array_imageurl);
-		intent.putExtra("array_artist", array_artist);
-		intent.putExtra("video_num", video_num);
-    	PendingIntent content = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-//    	notification.defaults |= Notification.DEFAULT_LIGHTS;
-//    	notification.defaults |= Notification.DEFAULT_SOUND;
-    	notification.flags |= Notification.FLAG_AUTO_CANCEL;
-//    	notification.flags |= Notification.FLAG_SHOW_LIGHTS;
-//    	notification.flags |= Notification.FLAG_ONGOING_EVENT;
-    	notification.icon = R.drawable.icon128;
-    	notification.setLatestEventInfo(context, context.getString(R.string.app_name) , array_music.get(video_num) + " - " + array_artist.get(video_num), content);
-    	notificationManager.notify(noti_state,notification);
+    	if (SDK_INT >= Build.VERSION_CODES.JELLY_BEAN){
+			try{
+				notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+		        Intent intent = new Intent(context, ContinueMediaPlayer.class);
+		    	intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		    	intent.putExtra("array_music", array_music);
+				intent.putExtra("array_videoid", array_videoid);
+				intent.putExtra("array_playtime", array_playtime);
+				intent.putExtra("array_imageurl", array_imageurl);
+				intent.putExtra("array_artist", array_artist);
+				intent.putExtra("video_num", video_num);
+				PendingIntent content = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+		        Notification.Builder builder = new Notification.Builder(context)
+		                .setContentIntent(content)
+		                .setSmallIcon(R.drawable.icon128)
+		                .setContentTitle(array_music.get(video_num))
+//		                .setContentText("")
+		                .setDefaults(Notification.FLAG_AUTO_CANCEL)
+		                .setTicker(context.getString(R.string.app_name));
+		        notification = builder.build();
+		        notificationManager.notify(noti_state, notification);
+			}catch(NullPointerException e){
+			}
+		}
+    	
     }
 	
 	public static void setNotification_Cancel(){
