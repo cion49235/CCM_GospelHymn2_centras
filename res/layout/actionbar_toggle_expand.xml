@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+    <ToggleButton
+        android:background="@drawable/actionbar_bt_05_on"
+        android:id="@+id/bt_toggle_expand"
+        android:layout_width="40dip"
+        android:layout_height="40dip"
+        android:textOn=""
+		android:textOff=""/>
+</RelativeLayout>

@@ -1,0 +1,110 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ccm.gospelhymn.centras"
+    android:versionCode="8"
+    android:versionName="1.0.7"
+    android:installLocation="auto">
+    <uses-sdk android:minSdkVersion="7" />
+
+    <application
+        android:icon="@drawable/icon128"
+        android:label="@string/app_name">
+        <activity
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:name="com.ccm.gospelhymn.centras.activity.Intro_Activity"
+            android:hardwareAccelerated="true"
+            android:label="@string/app_name" 
+            android:theme="@android:style/Theme.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+         <activity
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:name="com.ccm.gospelhymn.centras.activity.TabContent"
+            android:windowSoftInputMode="stateHidden|adjustResize|stateVisible|adjustPan"
+            android:hardwareAccelerated="true"
+	        android:theme="@style/Theme.Sherlock.Light.DarkActionBar" />
+        
+        <activity 
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:windowSoftInputMode="stateHidden|stateVisible|adjustPan"
+	        android:name="com.ccm.gospelhymn.centras.activity.SubActivity" 
+	        android:hardwareAccelerated="true"
+            android:theme="@style/AppTheme.TranslucentActionBar"/>
+        
+        <activity 
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:windowSoftInputMode="stateHidden|adjustResize|stateVisible|adjustPan"
+	        android:name="com.ccm.gospelhymn.centras.activity.Search_Intent_Activity" 
+	        android:hardwareAccelerated="true"
+            android:theme="@style/Theme.Sherlock.Light.DarkActionBar"/>
+        
+        <activity 
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+	        android:name="com.ccm.gospelhymn.centras.activity.Favorite_Intent_Activity" 
+	        android:hardwareAccelerated="true"
+            android:theme="@style/Theme.Sherlock.Light.DarkActionBar"/>
+        
+        <activity 
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+	        android:name="com.ccm.gospelhymn.centras.activity.ContactUs_Activity" 
+	        android:hardwareAccelerated="true"
+            android:theme="@style/Theme.Sherlock.Light.DarkActionBar"/>
+        
+        <activity 
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+	        android:name="com.ccm.gospelhymn.centras.videoplayer.CustomVideoPlayer"
+	        android:hardwareAccelerated="true" 
+	        android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
+        
+         <activity 
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+	        android:name="com.ccm.gospelhymn.centras.mediaplayer.ContinueMediaPlayer"
+	        android:hardwareAccelerated="true" 
+	        android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
+        
+        <activity 
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+	        android:name="com.ccm.gospelhymn.centras.youtubeplayer.CustomYoutubePlayer"
+	        android:hardwareAccelerated="true" 
+	        android:theme="@android:style/Theme.NoTitleBar.Fullscreen"/>
+        
+        <!-- For Admob -->
+		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+        <activity 
+            android:name="com.google.android.gms.ads.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
+        
+        <!-- For Ad@m -->
+        <activity android:name="net.daum.adam.publisher.impl.AdInterstitialActivity"
+			android:configChanges="orientation|keyboardHidden"
+			android:screenOrientation="portrait" />
+        
+        <!-- For T-Ad -->
+		<activity
+		    android:name="com.skplanet.tad.AdActivity"
+		    android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+		    android:label="Ad Activity"
+		    android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+		
+		<!-- For ShallWeAd -->
+		<activity android:name="com.jm.co.shallwead.sdk.ShallWeAdActivity"
+		    android:configChanges="orientation|keyboard|keyboardHidden"/>
+		<meta-data android:name="ShallWeAd_AppKey" android:value="" />
+		<receiver android:name="com.jm.co.shallwead.sdk.ShallWeAdReceiver" />
+    </application>
+    
+    
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+ 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.GET_TASKS"/>
+	<uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+	
+</manifest>

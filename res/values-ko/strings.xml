@@ -1,0 +1,64 @@
+<resources>
+
+    <string name="app_name">"CCM음악감상"</string>
+	<string name="txt_nodata">컨텐츠 목록이 없습니다</string>
+	<string name="txt_favorite_nodata">즐겨찾기 목록이 없습니다</string>
+    <string name="txt_main_activity1">"'즐겨찾기'항목에 추가하였습니다"</string>
+    <string name="txt_main_activity2">"'즐겨찾기'항목에서 삭제하였습니다"</string>
+    <string name="txt_main_activity3">"데이터 연결상태가 좋지않습니다\n다시 시도하시겠습니까?"</string>
+    <string name="txt_main_activity4">"다시시도"</string>
+    <string name="txt_main_activity5">"취소"</string>
+    
+    <string name="txt_finish">"'뒤로'버튼을 한번 더  누르시면 종료됩니다."</string>
+    
+    <string name="txt_sub_activity1">""</string>
+    <string name="txt_sub_activity2">""</string>
+    <string name="txt_sub_activity3">"데이터 연결상태가 좋지않습니다\n다시 시도하시겠습니까?"</string>
+    <string name="txt_sub_activity4">"다시시도"</string>
+    <string name="txt_sub_activity5">"취소"</string>
+    <string name="txt_sub_activity6">"선택하신 리스트가 없습니다\n선택후 다시 시도해주세요"</string>
+    
+    <string name="txt_favorite_activity1">"'즐겨찾기'항목에서 삭제되었습니다"</string>
+    <string name="txt_favorite_intent_activity1">"즐겨찾기"</string>
+    
+    
+    <string name="txt_error">인터넷 연결상태가 좋지않거나\n컨텐츠가 삭제되었습니다\n불편을 드려죄송합니다</string>
+    <string name="txt_error2">영상이 부분적으로 짤리거나\n비정상적인 영상입니다\n불편을 드려죄송합니다</string>
+    <string name="txt_network_error">"인터넷 연결을 확인해주세요"</string>
+    <string name="txt_pref">"com.potential.save.preferences"</string>
+    <string name="txt_custom_videoplayer1">"처음 재생목록 입니다"</string>
+    <string name="txt_custom_videoplayer2">"'종료'하시려면 잠금버튼을 해제하세요"</string>
+    <string name="txt_custom_videoplayer3">"광고 후 종료됩니다"</string>
+    
+    
+    <string name="txt_str8">"Mzk1OUQ3MEUzRjgxM0JDNkY4ODFBQTI4MjExRjUwRDEwQjNDOTI2QkNEQjExMEEwMjE3RkQ2NjNGMDhCNzIzMjYzRjkyRTZBNTNEM0ExNTVGMEU0RkExNzkyRjhEMzAwREE3NDUyRjE2QjAwRENFOTJDOUQyNkVDRDE3RTlGMUQ="</string>
+    <string name="error_player">"Youtube플레이어 업데이트하시거나\n설치되어있는지확인해주세요"</string>
+    
+    <string name="txt_custom_mediaplayer1">"'처음'재생목록입니다"</string>
+    <string name="txt_custom_videoplayer4">"재생중 일시정지 후 뒤로가기시\n음악목록으로 복귀합니다"</string>
+    
+    <string name="txt_security_title">"개인정보/위치정보수집 이용동의"</string>
+     <string name="txt_security_ok">"동의"</string>
+     <string name="txt_security_all_check">"전체동의"</string>
+     <string name="txt_security_cancel">"미동의"</string>
+     <string name="txt_security_guide">"본어플은 고객 맟춤형 광고노출/휴대전화 수신시 스트리밍정지를 위하여 다음과같은 권한을 필요로 하고있습니다 직접적인 개인정보(주민번호,휴대장치 고유식별번호 IMEI) 및  위치정보 등은수집하지않고 있으며 최소한의 전화수신감지 및 광고목적 용도로만  간접적인 개인정보/위치정보를 수집 하고있습니다.\n미동의한경우 서비스에 제한이있습니다 "</string>
+     
+     <string name="txt_security_private">"개인정보 수집/이용약관 동의"</string>
+     <string name="txt_security_location">"위치정보서비스 이용약관 동의"</string>
+     <string name="txt_security_detail">"상세"</string>
+     
+     <string name="txt_location_url">http://skplanet.com/etc/pop_legal2.aspx</string>
+     <string name="txt_service_ok">서비스를 이용하시려면 약관에 동의해주세요.</string>
+     
+     <string name="txt_channel_title0">"채널1"</string>
+     <string name="txt_channel_title1">"채널2"</string>
+     <string name="txt_channel_title2">"채널3"</string>
+     <string name="txt_channel_title3">"채널4"</string>
+     <string name="txt_channel_title4">"채널5"</string>
+     <string name="txt_channel_title5">"채널6"</string>
+     <string name="txt_channel_title6">"채널7"</string>
+     
+     <string name="txt_search_hint">"검색어를 입력해주세요"</string>
+     <string name="txt_search_empty">"검색어는 최소 1자 이상이어야 합니다"</string>
+     <string name="media_continue_ment">백그라운드에서 플레이합니다</string>
+</resources>

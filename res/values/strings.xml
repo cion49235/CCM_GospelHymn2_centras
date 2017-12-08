@@ -1,0 +1,64 @@
+<resources>
+
+    <string name="app_name">"CCM Music"</string>
+	<string name="txt_nodata">There is no data</string>
+	<string name="txt_favorite_nodata">There is no favorite data</string>
+    <string name="txt_main_activity1">"'Favorites' item has been added"</string>
+    <string name="txt_main_activity2">"'Favorite' items have been delete"</string>
+    <string name="txt_main_activity3">"Please checking the data connection\nPlease try again"</string>
+    <string name="txt_main_activity4">"Try again?"</string>
+    <string name="txt_main_activity5">"Cancel"</string>
+    
+    <string name="txt_finish">"'Pressing the Back button exit"</string>
+    
+    <string name="txt_sub_activity1">""</string>
+    <string name="txt_sub_activity2">""</string>
+    <string name="txt_sub_activity3">"Please checking the data connection\nPlease try again"</string>
+    <string name="txt_sub_activity4">"Try again?"</string>
+    <string name="txt_sub_activity5">"Cancel"</string>
+    <string name="txt_sub_activity6">"There is no list of chosen \ n Please try again later selection"</string>
+    
+    <string name="txt_favorite_activity1">"'Favorite' items have been delete"</string>
+    <string name="txt_favorite_intent_activity1">"Favorite"</string>
+    
+    
+    <string name="txt_error">Please checking the data connection\nOR Contents Deleted\nWe apologize for any inconvenience</string>
+    <string name="txt_error2">Contents Deleted\nWe apologize for any inconvenience</string>
+    <string name="txt_network_error">"Please checking the data connection"</string>
+    <string name="txt_pref">"com.potential.save.preferences"</string>
+    <string name="txt_custom_videoplayer1">"The first playlist"</string>
+    <string name="txt_custom_videoplayer2">"'Exit To get unlock button"</string>
+    <string name="txt_custom_videoplayer3">"Will end after ad"</string>
+    
+    
+    <string name="txt_str8">"Mzk1OUQ3MEUzRjgxM0JDNkY4ODFBQTI4MjExRjUwRDEwQjNDOTI2QkNEQjExMEEwMjE3RkQ2NjNGMDhCNzIzMjYzRjkyRTZBNTNEM0ExNTVGMEU0RkExNzkyRjhEMzAwREE3NDUyRjE2QjAwRENFOTJDOUQyNkVDRDE3RTlGMUQ="</string>
+    <string name="error_player">"Not Install! YoutubePlayer Error"</string>
+    
+    <string name="txt_custom_mediaplayer1">"The first playlist"</string>
+    <string name="txt_custom_videoplayer4">"To return after stopping the music back to the top list"</string>
+    
+    <string name="txt_security_title">"Privacy / location information collected Usage Agreement"</string>
+     <string name="txt_security_ok">"Agree"</string>
+     <string name="txt_security_all_check">"Full agree"</string>
+     <string name="txt_security_cancel">"Disagree"</string>
+     <string name="txt_security_guide">"Privacy / location information collected Usage Agreement"</string>
+     
+     <string name="txt_security_private">"Privacy / location information collected Usage Agreement"</string>
+     <string name="txt_security_location">"location information collected Usage Agreement"</string>
+     <string name="txt_security_detail">"More"</string>
+     
+     <string name="txt_location_url">http://skplanet.com/etc/pop_legal2.aspx</string>
+     <string name="txt_service_ok">To use the service, please agree to the Terms and Conditions.</string>
+     
+     <string name="txt_channel_title0">"Channel-1"</string>
+     <string name="txt_channel_title1">"Channel-2"</string>
+     <string name="txt_channel_title2">"Channel-3"</string>
+     <string name="txt_channel_title3">"Channel-4"</string>
+     <string name="txt_channel_title4">"Channel-5"</string>
+     <string name="txt_channel_title5">"Channel-6"</string>
+     <string name="txt_channel_title6">"Channel-7"</string>
+     
+     <string name="txt_search_hint">"Please enter your search query"</string>
+     <string name="txt_search_empty">"Keywords must be at least one character"</string>
+     <string name="media_continue_ment">"Background Play"</string>
+</resources>

@@ -1,0 +1,63 @@
+<resources>
+
+    <style name="AppTheme" parent="android:Theme.Light" />
+    
+    <style name="CustomActionBarTheme" parent="android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/CustomActionBar</item>
+    </style>
+    
+    <style name="CustomActionBar" parent="android:style/Widget.Holo.ActionBar">
+        <item name="android:titleTextStyle">@style/CustomActionBarTitleText</item>
+    </style>
+    
+    <style name="CustomActionBarTitleText" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+     <item name="android:textColor">@color/abs__holo_blue_light</item>
+    </style>
+    
+    <style name="Widget.ActionBar" parent="@style/Widget.Sherlock.Light.ActionBar.Solid.Inverse">
+    </style>
+    
+    <style name="Widget.ActionBar.Transparent">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="background">@android:color/transparent</item>
+    </style>
+    
+	<style name="Widget.Light.ActionBar" parent="@style/Widget.Sherlock.Light.ActionBar.Solid">
+    </style>
+    
+	<style name="Widget.Light.ActionBar.Transparent">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="background">@android:color/transparent</item>
+    </style>
+    
+	<style name="MediaButton">
+        <item name="android:background">@drawable/media_button_background</item>
+        <item name="android:layout_width">52.0dip</item>
+        <item name="android:layout_height">52.0dip</item>
+    </style>
+    
+	<style name="MediaButton.Duration.Rew" parent="@style/MediaButton">
+        <item name="android:src">@drawable/ic_media_duration_rew</item>
+    </style>
+    
+	<style name="MediaButton.Rew" parent="@style/MediaButton">
+        <item name="android:src">@drawable/ic_media_rew</item>
+    </style>
+    
+	<style name="MediaButton.Play" parent="@style/MediaButton">
+        <item name="android:src">@drawable/ic_media_play</item>
+    </style>
+    
+	<style name="MediaButton.Ffwd" parent="@style/MediaButton">
+        <item name="android:src">@drawable/ic_media_ff</item>
+    </style>
+    
+    <style name="MediaButton.Duration.Ffwd" parent="@style/MediaButton">
+        <item name="android:src">@drawable/ic_media_duration_ff</item>
+    </style>
+    
+	<style name="titlebarRss">
+        <item name="android:textSize">18.0sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+</resources>
