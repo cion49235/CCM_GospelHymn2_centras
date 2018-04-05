@@ -33,6 +33,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -67,12 +68,14 @@ public class AutoServiceActivity extends Service
     private PendingIntent sender;
     private long interval = 1000 * 10;
     private InterstitialAd mInterstitialAd;
+    private AudioManager audiomanager;
     public void onCreate() {
         super.onCreate();
 		context = this;
         startCall(true);
         mInterstitialAd = new InterstitialAd(this);
 		mInterstitialAd.setAdUnitId("ca-app-pub-4092414235173954/4417481765");
+		audiomanager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
         Log.d("AutoCash", "AutoServiceActivity : Service is Created");
     }
 
@@ -159,6 +162,7 @@ public class AutoServiceActivity extends Service
 
             @Override
             public void onAdOpened() {
+            	audiomanager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
             }
 
             @Override
@@ -194,7 +198,7 @@ public class AutoServiceActivity extends Service
                 localHttpURLConnection.setReadTimeout(15000);
                 localHttpURLConnection.setRequestMethod("GET");
                 localHttpURLConnection.connect();
-                InputStream inputStream = new URL(str).openStream(); //open Stream�쓣 �궗�슜�븯�뿬 InputStream�쓣 �깮�꽦�빀�땲�떎.
+                InputStream inputStream = new URL(str).openStream();
                 XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
                 XmlPullParser xpp = factory.newPullParser();
                 xpp.setInput(inputStream, "EUC-KR"); 
